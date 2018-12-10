@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/aaa/js/jquery.min.js"></script>
+</head>
+<body>
+<center>
+<h1>新闻列表ksd</h1>
+
+    <a href="/aaa/news/toAdd">新闻添加</a>
+<table border="5">
+    <tr>
+        <th width="60px" align="center">标题</th>
+        <th width="60px" align="center"> 内容 </th>
+        <th width="60px" align="center"> 类型 </th>
+        <th width="60px" align="center"> 图片 </th>
+        <th width="100px" align="center"> 操作 </th>
+    </tr>
+    <tr th:each="news : ${newsList}">
+
+        <td align="center" th:text="${news.TITLE}"> </td>
+        <td align="center" th:text="${news.CONTENT}"> </td>
+        <td align="center" th:text="${news.TYPEID}"></td>
+        <td align="center" th:text="${news.PICPATH}"></td>
+        <td align="center"  >
+            <input type="button" th:onclick="|javascript:edit(${news.NEWSID})|" value = "修改" />
+            <input type="button" th:onclick="|javascript:del(${news.NEWSID})|" value = "删除" />
+            <a th:href="'/aaa/news/downLoad?fileName='+${news.PICPATH}">图片下载</a>
+        </td>
+    </tr>
+</table>
+</center>
+</body>
+
+</html>
